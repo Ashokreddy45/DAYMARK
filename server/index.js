@@ -15,6 +15,9 @@ const pool = mysql.createPool({
   user: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'daymark_db',
+  ssl: process.env.DB_SSL === 'true'
+    ? { minVersion: 'TLSv1.2' }
+    : undefined,
   waitForConnections: true,
   connectionLimit: 4,
   queueLimit: 0,
